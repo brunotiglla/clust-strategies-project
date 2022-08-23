@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-login',
@@ -7,20 +7,29 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm!: FormGroup ;
 
-  loginForm = new FormGroup({
-    usuario : new FormControl('', Validators.required),
-    password : new FormControl('', Validators.required)
-
-  })
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) { }
+ 
+  ngOnInit() {
+   this.buildForm();
   }
+ 
+  onSubmit() {
+   if (this.loginForm.invalid){
+     console.log("sub form", this.loginForm.value);
 
-  omLogin(form: any){
-    console.log(form)
+   }
+   else{
+     console.error('form is bad')
+   }
   }
+ 
+  private buildForm() {
+   this.loginForm = this.fb.group({
+     login: ["", Validators.required],
+     password: ["", Validators.required]
+   });
+ }
 
 } 
