@@ -1,47 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { ApiService } from 'src/app/servicios/api/api.service'
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
+import { ApiService } from 'src/app/servicios/api/api.service'
+import { first } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup ;
-  msg: any;
-  constructor(private pService:ApiService,  private fb: FormBuilder) { }
+
+  myform: FormGroup;
+
+  constructor(private authservice: ApiService) { }
  
   ngOnInit() : void {
-   this.buildForm();
-   this.showMesage();
+   this.myform = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl('')
+   });
+
+
   }
  
-  showMesage(){
-    this.pService.getMessage().subscribe(data=>{
-
-      this.msg = data;
-      console.log(this.msg);
-    })
+  get f(){
+    return this.myform.controls;
   }
-
 
   ///
   onSubmit() {
-   if (this.loginForm.invalid){
-     console.log("sub form", this.loginForm.value);
-
-   }
-   else{
-     console.error('form is bad')
-   }
+    this.authservice.login(this.f['username'].value, this.f['password'].value)
+    .pipe(first()).subscribe(
+      (data: any) =>{
+        console.log(data);
+      }
+    )
   }
- 
-  private buildForm() {
-   this.loginForm = this.fb.group({
-     login: ["", Validators.required],
-     password: ["", Validators.required]
-   });
- }
 
 } 
