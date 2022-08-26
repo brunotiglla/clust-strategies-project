@@ -1,26 +1,50 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
-import { AppRoutingModule, routingComponents } from './app-routing.module';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './vistas/login/login.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-import { ApiService } from './servicios/api/api.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//components
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
+import { GestionDeDatosComponent } from './components/gestion-de-datos/gestion-de-datos.component';
+import { HerramientaDeAnalisisComponent } from './components/herramienta-de-analisis/herramienta-de-analisis.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
+import { LoginComponent } from './components/login/login.component'; 
+//material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule } from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
+
+ 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    routingComponents,
+    SidenavComponent,
+    InicioComponent,
+    MiPerfilComponent,
+    GestionDeDatosComponent,
+    HerramientaDeAnalisisComponent,
+    AyudaComponent,
+    LoginComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule
   ],
-  providers: [ApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

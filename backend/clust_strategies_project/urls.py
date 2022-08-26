@@ -1,16 +1,12 @@
 
 from django.urls import path, include
-
-from rest_framework import  routers
-from rest_framework.authtoken.views import ObtainAuthToken
-
-# Routers provide a way of automatically determining the URL conf.
+from django.contrib import admin
 
 
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-
-    path('api-auth/', ObtainAuthToken.as_view()),
+    path('accounts/', include('clust_strategies_app.urls')),
+    path('admin', admin.site.urls),
+    path('api/auth/', include('rest_framework.urls'))
+    
 ]

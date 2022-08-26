@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { ApiService } from 'src/app/servicios/api/api.service'
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,24 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup ;
-
-  constructor(private fb: FormBuilder) { }
+  msg: any;
+  constructor(private pService:ApiService,  private fb: FormBuilder) { }
  
-  ngOnInit() {
+  ngOnInit() : void {
    this.buildForm();
+   this.showMesage();
   }
  
+  showMesage(){
+    this.pService.getMessage().subscribe(data=>{
+
+      this.msg = data;
+      console.log(this.msg);
+    })
+  }
+
+
+  ///
   onSubmit() {
    if (this.loginForm.invalid){
      console.log("sub form", this.loginForm.value);

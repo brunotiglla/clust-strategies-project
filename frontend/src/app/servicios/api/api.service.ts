@@ -2,23 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable(
+  {providedIn: 'root'}
+)
 export class ApiService {
-
-   // http options used for making API calls
-   private httpOptions: any;
+  api_url = 'http://localhost::8000/ ';
   
-  
-   // error messages received from the login attempt
-   public errors: any = [];
-  
-   constructor(private http: HttpClient) {
-     this.httpOptions = {
-       headers: new HttpHeaders({'Content-Type': 'application/json'})
-     };
-   }
+   constructor(private http: HttpClient) {   }
   
    // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
+   getMessage(){
+    return this.http.get(this.api_url);
+   }
+   
    public login() {
     console.log('casi bro')
    }
