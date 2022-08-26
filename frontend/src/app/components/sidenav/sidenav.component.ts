@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import {Router} from '@angular/router'
 
 
@@ -11,7 +11,7 @@ export class SidenavComponent implements OnInit {
 
   constructor( private router:Router) { }
 
-  opened = false;
+  
 
   ngOnInit(): void {
   }

@@ -20,6 +20,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -34,7 +36,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     GestionDeDatosComponent,
     HerramientaDeAnalisisComponent,
     AyudaComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent
     
   ],
   imports: [

@@ -13,12 +13,12 @@ import { AyudaComponent } from './components/ayuda/ayuda.component';
 //import { LoginComponent } from './components/login/login.component'; 
 
 const routes: Routes = [
-  //{path: '', redirectTo: '/Inicio',pathMatch: 'full'},
-  //{path: '/Inicio', component: InicioComponent},
-  //{path: '/Perfil', component: MiPerfilComponent},
-  //{path: '/GestionDeDatos',component: GestionDeDatosComponent},
-  //{path: '/Analisis', component: HerramientaDeAnalisisComponent},
-  //{path: '/Ayuda', component: AyudaComponent},
+  {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
+  {path: 'Inicio', component: InicioComponent},
+  {path: 'Perfil', component: MiPerfilComponent},
+  {path: 'GestionDeDatos',component: GestionDeDatosComponent},
+  {path: 'Analisis', component: HerramientaDeAnalisisComponent},
+  {path: 'Ayuda', component: AyudaComponent},
   {path: 'login',component: LoginComponent}
 ];
 
