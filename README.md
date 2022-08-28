@@ -1,1 +1,1 @@
-# simple-project
+# clust-strategies-project
