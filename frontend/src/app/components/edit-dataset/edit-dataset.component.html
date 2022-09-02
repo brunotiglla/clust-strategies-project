@@ -1,0 +1,29 @@
+
+<div class="card card-primary">
+    <div class="card-header">
+      
+      <h3 class="card-title" class="currentDataset">Edita dataset </h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="inputName">Nombre del Dataset</label>
+          <input class="form-control" id="inputName" placeholder="Ingrese nombre del dataset">
+        </div>
+        <div class="form-group">
+          <label for="inputFecha">Fecha de Creación</label>
+          <input class="form-control" id="inputFecha" placeholder="Ingrese fecha de creación">
+        </div>
+        
+        
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button (click)="goToPage('Analisis')" type="submit" class="btn btn-primary">Aceptar</button>
+      </div>
+    </form>
+  </div>
+  <!-- /.card -->

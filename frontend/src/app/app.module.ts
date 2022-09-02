@@ -24,6 +24,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { AddDatasetComponent } from './components/add-dataset/add-dataset.component';
+import { EditDatasetComponent } from './components/edit-dataset/edit-dataset.component';
+import { ClientInfoComponent } from './components/client-info/client-info.component';
+import { EditClientInfoComponent } from './components/edit-client-info/edit-client-info.component';
 
 
 
@@ -42,7 +46,11 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     HeaderComponent,
     FooterComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AddDatasetComponent,
+    EditDatasetComponent,
+    ClientInfoComponent,
+    EditClientInfoComponent
     
   ],
   imports: [

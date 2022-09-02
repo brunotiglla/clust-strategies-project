@@ -1,1 +1,71 @@
-<p>herramienta-de-analisis works!</p>
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>HERRAMIENTA DE ANÁLISIS</h1>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+
+
+<ul class="datasets">
+</ul>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">1. Seleccionar Data</h3>
+        <a (click)="goToPage('AddDataset')" class="btn btn-app">
+          <i class="fas fa-plus"></i> Add
+        </a>
+
+        
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0" style="height: 300px;">
+        <table class="table table-head-fixed text-nowrap">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>File name</th>
+              <th>Created</th>
+              <th>Details</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let dataset of datasets">
+            <tr>
+              <td>{{dataset.id}}</td>
+              <td>{{dataset.file_name}}</td>
+              <td>{{dataset.created_timestamp}}</td>
+              <td>
+                <a (click)="goToPage2('ClientInfo',dataset.id)" class="btn btn-app">
+                  Details
+                </a>
+              </td>
+              <td>
+                <a (click)="goToPage2('EditDataset',dataset.id)" class="btn btn-app">
+                  Edit
+                </a>
+              </td>
+              <td>
+                <a (click)="deleteFromArray(dataset.id)" class="btn btn-app">
+                  Delete
+                </a>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>
+<!-- /.row -->
+
