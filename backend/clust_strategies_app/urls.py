@@ -1,11 +1,19 @@
 from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
-
 from clust_strategies_app import views
+# from .views import AccountViewSet, LoginView
+
+#JWT expor view
+# from rest_framework_simplejwt import views as jwt_views
+
+
 
 
 urlpatterns = [
-    path('profile/', views.ProfileView.as_view()),
-    path('api/auth/', views.CustomAuthToken.as_view())
+   
+    path('register/', views.AccountViewSet.as_view(), name='register'),
+    path('login/', views.LoginView.as_view(), name='login')
+  
+
+
+
 ]
-urlpatterns = format_suffix_patterns(urlpatterns)

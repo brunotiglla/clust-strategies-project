@@ -12,9 +12,9 @@ import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
 import { GestionDeDatosComponent } from './components/gestion-de-datos/gestion-de-datos.component';
 import { HerramientaDeAnalisisComponent } from './components/herramienta-de-analisis/herramienta-de-analisis.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
-//import { LoginComponent } from './components/login/login.component'; 
+import { LoginComponent } from './components/login/login.component'; 
 // old components
-import {LoginComponent} from './vistas/login/login.component'
+//import {LoginComponent} from './vistas/login/login.component'
 //material
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';

@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#LOGIN_REDIRECT_URL= '/'
+#LOGOUT_REDIRECT_URL= '/'
+AUTH_USER_MODEL = 'clust_strategies_app.Company'
+
 
 # Application definition
 
@@ -37,9 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #frameworks
     "corsheaders",
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken', 
+
+    #aplicacion
     'clust_strategies_app.apps.ClustStrategiesAppConfig'
 ]
 
@@ -47,7 +55,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication'
+        'rest_framework.authentication.TokenAuthentication',
+        #Nuevo
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
 
@@ -121,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 

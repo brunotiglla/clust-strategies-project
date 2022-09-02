@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 const httpOptions={
   headers: new HttpHeaders({
@@ -28,6 +28,10 @@ export class ApiService {
       })
     );
   }
+
+  
+
+
 
   logout(){
     localStorage.removeItem('currentUser');
