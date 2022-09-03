@@ -1,18 +1,15 @@
 from msilib.schema import Class
 from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.models  import User
-from django.contrib.auth import get_user_model, authenticate
-from django import forms
-#--- Models
-from .models import Company, AccountManager
-#--- API
+from django.contrib.auth import  get_user_model, authenticate
+
 from rest_framework import serializers
 
 class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ("username", "email", "password",  "admin_name")
+        fields = ('username', 'email', 'password',  'admin_name')
         extra_kwargs = {'password': {'write_only': True, 'min_length' : 5}}
 
     def create(self, validated_data):

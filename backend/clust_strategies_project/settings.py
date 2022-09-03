@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', 
 
     #aplicacion
-    'clust_strategies_app.apps.ClustStrategiesAppConfig'
+    'clust_strategies_app'
 ]
 
 REST_FRAMEWORK = {
