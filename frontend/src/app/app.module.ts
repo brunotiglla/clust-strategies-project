@@ -30,7 +30,9 @@ import { ClientInfoComponent } from './components/client-info/client-info.compon
 import { EditClientInfoComponent } from './components/edit-client-info/edit-client-info.component';
 
 
+// Servicios
 
+import { ApiService } from './servicios/api/api.service'
  
 
 @NgModule({
@@ -65,7 +67,7 @@ import { EditClientInfoComponent } from './components/edit-client-info/edit-clie
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
