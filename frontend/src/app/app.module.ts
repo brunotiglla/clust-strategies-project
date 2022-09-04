@@ -13,13 +13,6 @@ import { GestionDeDatosComponent } from './components/gestion-de-datos/gestion-d
 import { HerramientaDeAnalisisComponent } from './components/herramienta-de-analisis/herramienta-de-analisis.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { LoginComponent } from './components/login/login.component'; 
-// old components
-//import {LoginComponent} from './vistas/login/login.component'
-//material
-import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatIconModule } from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -28,6 +21,16 @@ import { AddDatasetComponent } from './components/add-dataset/add-dataset.compon
 import { EditDatasetComponent } from './components/edit-dataset/edit-dataset.component';
 import { ClientInfoComponent } from './components/client-info/client-info.component';
 import { EditClientInfoComponent } from './components/edit-client-info/edit-client-info.component';
+import { AddClientInfoComponent } from './components/add-client-info/add-client-info.component';
+
+// old components
+//import {LoginComponent} from './vistas/login/login.component'
+//material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule } from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 
 
@@ -50,7 +53,8 @@ import { EditClientInfoComponent } from './components/edit-client-info/edit-clie
     AddDatasetComponent,
     EditDatasetComponent,
     ClientInfoComponent,
-    EditClientInfoComponent
+    EditClientInfoComponent,
+    AddClientInfoComponent
     
   ],
   imports: [

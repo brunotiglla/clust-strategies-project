@@ -12,6 +12,9 @@ from django.core.files.storage import FileSystemStorage
 #from rest_framework import serializers, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 fs = FileSystemStorage(location='tmp/')
 
@@ -20,11 +23,18 @@ fs = FileSystemStorage(location='tmp/')
 class DataSetViewset(viewsets.ModelViewSet):
     queryset = models.DataSet.objects.all()
     serializer_class = serializers.DataSetSerializer
-
+    
+class ClientInfoAuxViewset(viewsets.ModelViewSet):
+    queryset = models.Client_Info.objects.all()
+    serializer_class = serializers.ClientInfoSerialize
+    filter_backends = (SearchFilter)
+    #filter_fields = ('dataset_id')as
+    search_fields = ['=dataset_id.id']
 
 class ClientInfoViewset(viewsets.ModelViewSet):
     queryset = models.Client_Info.objects.all()
     serializer_class = serializers.ClientInfoSerialize
+    
 
     @action(detail=False, methods=['POST'])
     def upload_data(self, request):

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {DatasetService} from 'src/app/servicios/dataset/dataset.service';
+import {Dataset} from 'src/app/models/dataset-model';
 
 @Component({
   selector: 'app-add-dataset',
@@ -9,10 +11,16 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class AddDatasetComponent implements OnInit {
 
-  constructor( private router:Router) { }
+  constructor( private router:Router, private datasetService: DatasetService) { }
 
   fileName ='';
   addForm: FormGroup;
+  dataset: Dataset = {
+    id: 0,
+    company_id: 0,
+    file_name: '',
+    created_timestamp: new Date(),
+  }
   
 
   ngOnInit(): void {
@@ -24,11 +32,17 @@ export class AddDatasetComponent implements OnInit {
   
   goToPage(pageName:string):void{
     this.add()
-    //this.router.navigate([`${pageName}`]);
+    this.router.navigate([`${pageName}`]);
   }
 
   add():void{
-    console.log(this.addForm);
+    this.dataset.company_id = 1;
+    this.dataset.file_name = this.addForm.get('name')?.value
+    this.dataset.created_timestamp = this.addForm.get('date')?.value
+    console.log(this.dataset);
+    this.datasetService.createDataset(this.dataset).subscribe((data: any) =>{
+      console.log(data);
+    })
   }
 
 }
