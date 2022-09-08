@@ -35,4 +35,6 @@ export class ClientInfoService {
     return this.http.post<any>(`${environment.apiUrl}/info/`,clientInfo)
     .pipe(catchError((e) => throwError(e)));
   }
+
+  
 }

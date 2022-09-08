@@ -18,7 +18,7 @@
           <label for="exampleInputFile">Archivo</label>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="exampleInputFile" onchange="console.log(event.target.files)">
+              <input type="file" class="custom-file-input" id="exampleInputFile" (change)="uploadFile($event)" enctype="multipart/form-data" >
               <label class="custom-file-label" for="exampleInputFile">Buscar</label>
             </div>
             <div class="input-group-append">
