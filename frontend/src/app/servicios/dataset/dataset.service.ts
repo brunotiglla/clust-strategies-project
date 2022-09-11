@@ -41,6 +41,12 @@ export class DatasetService {
     return this.http.post<any>(`${environment.apiUrl}/info/upload_data/`,[file,c_id,d_id])
     .pipe(catchError((e) => throwError(e)));
   }
+
+  postFile2(body: any){
+    //console.log(body);
+    return this.http.post<any>(`${environment.apiUrl}/info/upload_data/`,body)
+    .pipe(catchError((e) => throwError(e)));
+  }
   //postFile(file: FormData,c_id :number,d_id :number){
   //  return this.http.post<any>(`${environment.apiUrl}/info/upload_data/`,file)
   //  .pipe(catchError((e) => throwError(e)));

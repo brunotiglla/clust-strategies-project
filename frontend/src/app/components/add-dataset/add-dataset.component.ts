@@ -43,20 +43,55 @@ export class AddDatasetComponent implements OnInit {
   }
   
   goToPage(pageName:string):void{
-    this.add()
+    this.auxFunction();
+    //this.add()
     //this.router.navigate([`${pageName}`]);
   }
 
-  add():void{
-    //this.dataset.company_id = 1;
-    //this.dataset.file_name = this.addForm.get('name')?.value
-    //this.dataset.created_timestamp = this.addForm.get('date')?.value
-    //console.log(this.dataset);
-    //this.datasetService.createDataset(this.dataset).subscribe((data: any) =>{
-    //  console.log(data);
-    //})
+  fd = new FormData();
 
-    this.datasetService.postFile(this.fileTmp,1,1).subscribe();
+  auxFunction(): void{
+    this.add();
+    this.addFile();
+  }
+
+  add():void{
+    this.dataset.company_id = 1;
+    this.dataset.file_name = this.addForm.get('name')?.value
+    this.dataset.created_timestamp = this.addForm.get('date')?.value
+    console.log(this.dataset);
+    this.datasetService.createDataset(this.dataset).subscribe((data: any) =>{
+      console.log(data.id);
+      this.dataset.id = data.id;
+      const aux = String(this.dataset.id);
+      this.fd.append("c_id", "1");
+      this.fd.append("d_id", aux);
+      this.fd.append("file",this.fileTmp.file);
+      this.datasetService.postFile2(this.fd).subscribe();
+      console.log("owo");
+    })
+
+    
+
+    //this.datasetService.postFile(this.fileTmp,1,1).subscribe();
+    //var body = {"c_id":1,"d_id":2,"file": this.fileTmp}
+    //const aux = String(this.dataset.id);
+    //console.log(aux);
+//
+    //console.log("next");
+    //this.addFile();
+
+    
+    //this.fd.append("c_id", "1");
+    //this.fd.append("d_id", aux);
+    //this.fd.append("file",this.fileTmp.file);
+//
+    ////this.datasetService.postFile2(this.fileTmp.data).subscribe();
+    //this.datasetService.postFile2(this.fd).subscribe();
+  }
+
+  addFile(){
+    console.log(this.dataset.id);
   }
 
   private fileTmp:any;
@@ -70,6 +105,7 @@ export class AddDatasetComponent implements OnInit {
     this.fileTmp = {
       file:file,
       //fileName:file.name
+      data: {c_id: 1, d_id: 2, file: file}
     }
 
     console.log(file);

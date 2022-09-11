@@ -18,7 +18,8 @@ export class ApiService {
   constructor(private http: HttpClient) {   }
    
   login(username: string, password: string) {
-    return this.http.post<any>(this.api_url + 'accounts/api/auth/', 
+    return this.http.post<any>(this.api_url + 'accounts/api/auth/', //bruno
+    //return this.http.post<any>(this.api_url + 'api/accounts/login/', //sergio
     {username, password}, httpOptions).pipe(
       map( user=>{
         if(user && user.token){

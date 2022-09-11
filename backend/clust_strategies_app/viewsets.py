@@ -16,6 +16,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
+#from rest_framework.parsers import FileUploadParser,FormParser,MultiPartParser as parsers
+import rest_framework.parsers as parsers
 
 
 fs = FileSystemStorage(location='tmp/')
@@ -42,6 +44,7 @@ class DataSetViewset(viewsets.ModelViewSet):
 class ClientInfoViewset(viewsets.ModelViewSet):
     queryset = models.Client_Info.objects.all()
     serializer_class = serializers.ClientInfoSerialize
+    parser_classes = (parsers.MultiPartParser,)
 
     @action(detail = False, methods=['GET'])
     def get_with_fk(self, request):
@@ -61,16 +64,16 @@ class ClientInfoViewset(viewsets.ModelViewSet):
     def upload_data(self, request):
 
         print(request.data)
-
-        #print(request.FILES)
-        return Response(":)")
+#
+        print(request.FILES)
+        #return Response(":)")
         
         
         file = request.FILES["file"]
         
         c_id = request.data["c_id"]
         d_id = request.data["d_id"]
-        #print(c_id,d_id)
+        print(c_id,d_id)
 
         content = file.read()
 
