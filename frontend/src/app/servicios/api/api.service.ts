@@ -20,11 +20,13 @@ export class ApiService {
   user = new BehaviorSubject<User>(null);
   constructor(private http: HttpClient, private router: Router) {   }
    
+
   singup(account: singupModel) {
     return this.http.post<AuthResData>('http://localhost:8000/api/accounts/register/', account)
     .pipe(catchError(this.handleError), tap((res)=>{
       console.log(res)
     }))
+
   }
 
   login(account: loginModel){

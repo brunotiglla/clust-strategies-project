@@ -6,15 +6,15 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form [formGroup] = "editForm">
       <div class="card-body">
         <div class="form-group">
           <label for="inputName">Nombre del Dataset</label>
-          <input class="form-control" id="inputName" placeholder="Ingrese nombre del dataset">
+          <input class="form-control" id="inputName" placeholder="Ingrese nombre del dataset" formControlName="name">
         </div>
         <div class="form-group">
           <label for="inputFecha">Fecha de Creación</label>
-          <input class="form-control" id="inputFecha" placeholder="Ingrese fecha de creación">
+          <input type = "date" class="form-control" id="inputFecha" placeholder="Ingrese fecha de creación" formControlName="date">
         </div>
         
         
@@ -22,7 +22,7 @@
       <!-- /.card-body -->
 
       <div class="card-footer">
-        <button (click)="goToPage('Analisis')" type="submit" class="btn btn-primary">Aceptar</button>
+        <button (click)="editDataset()" type="submit" class="btn btn-primary">Aceptar</button>
       </div>
     </form>
   </div>

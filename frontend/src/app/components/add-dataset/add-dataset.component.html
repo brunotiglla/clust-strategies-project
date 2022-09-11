@@ -4,21 +4,21 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form [formGroup] = "addForm" >
       <div class="card-body">
         <div class="form-group">
           <label for="inputName">Nombre del Dataset</label>
-          <input class="form-control" id="inputName" placeholder="Ingrese nombre del dataset">
+          <input class="form-control" id="inputName" placeholder="Ingrese nombre del dataset" formControlName="name">
         </div>
         <div class="form-group">
           <label for="inputFecha">Fecha de Creación</label>
-          <input class="form-control" id="inputFecha" placeholder="Ingrese fecha de creación">
+          <input type = "date" class="form-control" id="inputFecha" placeholder="Ingrese fecha de creación" formControlName="date">
         </div>
         <div class="form-group">
           <label for="exampleInputFile">Archivo</label>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="exampleInputFile">
+              <input type="file" class="custom-file-input" id="exampleInputFile" (change)="uploadFile($event)" enctype="multipart/form-data" >
               <label class="custom-file-label" for="exampleInputFile">Buscar</label>
             </div>
             <div class="input-group-append">

@@ -29,7 +29,7 @@
         <table class="table table-head-fixed text-nowrap">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>#</th>
               <th>File name</th>
               <th>Created</th>
               <th>Details</th>
@@ -37,23 +37,23 @@
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody *ngFor="let dataset of datasets">
+          <tbody *ngFor="let data of dataset; index as i">
             <tr>
-              <td>{{dataset.id}}</td>
-              <td>{{dataset.file_name}}</td>
-              <td>{{dataset.created_timestamp}}</td>
+              <td>{{i+1}}</td>
+              <td>{{data.file_name}}</td>
+              <td>{{data.created_timestamp}}</td>
               <td>
-                <a (click)="goToPage2('ClientInfo',dataset.id)" class="btn btn-app">
+                <a (click)="goToPage2('ClientInfo',data.id)" class="btn btn-app">
                   Details
                 </a>
               </td>
               <td>
-                <a (click)="goToPage2('EditDataset',dataset.id)" class="btn btn-app">
+                <a (click)="goToPage2('EditDataset',data.id)" class="btn btn-app">
                   Edit
                 </a>
               </td>
               <td>
-                <a (click)="deleteFromArray(dataset.id)" class="btn btn-app">
+                <a (click)="deleteFromArray(data.id)" class="btn btn-app">
                   Delete
                 </a>
               </td>
