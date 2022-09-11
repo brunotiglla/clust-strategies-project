@@ -17,6 +17,7 @@
                     name = "admin_name"
                     formControlName="admin_name"
                     >
+                    <span class="help-block" style="color: red;" *ngIf="!singupForm.get('admin_name').valid && singupForm.get('admin_name').touched">Fail Requerid</span>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
@@ -31,6 +32,7 @@
                     name = "username"
                     formControlName="username"
                     >
+                    <span class="help-block" style="color: red;" *ngIf="!singupForm.get('username').valid && singupForm.get('username').touched">Fail Requerid</span>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
@@ -39,12 +41,13 @@
             </div>
             <div class="input-group mb-3">
               <input  type="email" 
-              class="form-control" 
-              placeholder="Email"
-              id = "email"
-              name = "email"
-              formControlName="email"
-              >
+                      class="form-control" 
+                      placeholder="Email"
+                      id = "email"
+                      name = "email"
+                      formControlName="email"
+                      >
+                      <span class="help-block" style="color: red;" *ngIf="!singupForm.get('email').valid && singupForm.get('email').touched">Fail Requerid</span>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-envelope"></span>
@@ -54,12 +57,14 @@
             <div formGroupName = "passwords">
               <div class="input-group mb-3">
                 <input  type="password" 
-                class="form-control" 
-                placeholder="Password"
-                id = "password"
-                name = "password"
-                formControlName="password"
-                >
+                        class="form-control" 
+                        placeholder="Password"
+                        id = "password"
+                        name = "password"
+                        formControlName="password"
+                        >
+                        
+                        <span class="help-block" style="color: red;" *ngIf="!singupForm.get('passwords.password').valid && singupForm.get('passwords.password').touched">Fail Requerid</span>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-lock"></span>
@@ -68,12 +73,13 @@
               </div>
               <div class="input-group mb-3">
                 <input  type="password"
-                class="form-control" 
-                placeholder="Retype password"
-                id = "confirmpassword"
-                name = "confirmpassword"
-                formControlName="confirmpassword"
-                >
+                      class="form-control" 
+                      placeholder="Retype password"
+                      id = "confirmpassword"
+                      name = "confirmpassword"
+                      formControlName="confirmpassword"
+                      >
+                      <span class="help-block" style="color: red;" *ngIf="!singupForm.get('passwords.confirmpassword').valid && singupForm.get('passwords.confirmpassword').touched">Requerid Fail</span>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-lock"></span>

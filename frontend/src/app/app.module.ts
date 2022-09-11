@@ -33,7 +33,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
+// Servicios
 
+import { ApiService } from './servicios/api/api.service'
  
 
 @NgModule({
@@ -69,7 +71,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

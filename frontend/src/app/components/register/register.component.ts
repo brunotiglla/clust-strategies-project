@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ApiService } from 'src/app/servicios/api/api.service'
+import { AuthResData, singupModel } from 'src/app/models/auth.models';
 
 
 @Component({
@@ -23,17 +24,38 @@ export class RegisterComponent implements OnInit {
       'passwords' : new FormGroup({
         'password' : new FormControl(null, Validators.required),
         'confirmpassword' : new FormControl(null, Validators.required) 
-      })
+      }, this.passwordCheck)
     });
   }
 
   onSignup(){
     console.log(this.singupForm)
+    this.authservice.singup({
+      'email': this.singupForm.get('email').value,
+      'username': this.singupForm.get('username').value,
+      'admin_name': this.singupForm.get('admin_name').value,
+      'password': this.singupForm.get('passwords.password').value,
+    })
+    .subscribe(
+      (data: AuthResData) =>{
+        console.log(data)
+      }, (errorRes) =>{
+        console.log(errorRes);
+      }
+    )
   }
 
 
   goToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
+  }
+
+
+  passwordCheck(control:FormGroup): {[s:string] : boolean} {
+    if(control.get('password').value != control.get('confirmpassword').value){
+      return {'notsame':true}
+    }
+    return null;
   }
 
 }

@@ -10,32 +10,24 @@ from rest_framework.authtoken.models import Token
 # Create your models here.
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
+def create_auth_token(sender, instance=None, created=False, **extrafields):
     if created:
         Token.objects.create(user=instance) 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
+    def create_user(self, email, username=None, password=None, **extrafields):
         if not email:
             raise ValueError('Users must have a valid email address.')
-
-        if not kwargs.get('username'):
-            raise ValueError('Users must have a valid username.')
-
-        account = self.model(
-            email=self.normalize_email(email), username=kwargs.get('username')
-        )
-
+        account = self.model( username=username, email=self.normalize_email(email), **extrafields)
         account.set_password(password)
         account.save(using=self._db)
 
         return account
 
-    def create_superuser(self, email, password, **kwargs):
-        account = self.create_user(email, password, **kwargs)
+    def create_superuser(self, email, password, username=None):
+        account = self.create_user(email, username, password)
         account.is_staff = True
         account.is_superuser = True
-        account.is_admin = True
         account.save()
 
         return account
@@ -43,7 +35,7 @@ class AccountManager(BaseUserManager):
 
 
 class Company(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=250, unique=True) #Company_name
+    username = models.CharField(max_length=250, unique=True, null=True) #Company_name
     email = models.EmailField( unique=True)
     password = models.CharField(max_length=250)
     admin_name = models.CharField(max_length=250)
@@ -54,7 +46,7 @@ class Company(AbstractBaseUser, PermissionsMixin):
     objects = AccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    
 
     def __str__(self):
         return self.email
