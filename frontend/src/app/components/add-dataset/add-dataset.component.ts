@@ -68,7 +68,7 @@ export class AddDatasetComponent implements OnInit {
       this.fd.append("d_id", aux);
       this.fd.append("file",this.fileTmp.file);
       this.datasetService.postFile2(this.fd).subscribe();
-      console.log("owo");
+      //console.log("owo");
     })
 
     

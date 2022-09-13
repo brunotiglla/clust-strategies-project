@@ -17,6 +17,11 @@ export class DatasetService {
     .pipe(catchError((e) => throwError(e)));
   }
 
+  getListFk(id: number): Observable<Dataset[]>{
+    return this.http.get<Dataset[]>(`${environment.apiUrl}/dataset/get_dataset/?c_id=${id}`)
+    .pipe(catchError((e) => throwError(e)));
+  }
+
   createDataset(dataset: Dataset){
     return this.http.post<any>(`${environment.apiUrl}/dataset/`,dataset)
     .pipe(catchError((e) => throwError(e)));
@@ -47,8 +52,5 @@ export class DatasetService {
     return this.http.post<any>(`${environment.apiUrl}/info/upload_data/`,body)
     .pipe(catchError((e) => throwError(e)));
   }
-  //postFile(file: FormData,c_id :number,d_id :number){
-  //  return this.http.post<any>(`${environment.apiUrl}/info/upload_data/`,file)
-  //  .pipe(catchError((e) => throwError(e)));
-  //}
+  
 }

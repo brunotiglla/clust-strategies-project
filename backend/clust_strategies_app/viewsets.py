@@ -30,7 +30,9 @@ class DataSetViewset(viewsets.ModelViewSet):
 
     @action(detail = False, methods=['GET'])
     def get_dataset(self, request):
+        #print(request.query_params)
         c_id = request.query_params["c_id"]
+        #print(c_id)
 
         dataset = models.DataSet.objects.filter(company_id = c_id)
         
@@ -49,8 +51,10 @@ class ClientInfoViewset(viewsets.ModelViewSet):
     @action(detail = False, methods=['GET'])
     def get_with_fk(self, request):
         #c_id = request.query_params["c_id"]
+
+        #print(request.query_params)
         d_id = request.query_params["d_id"]
-        print(d_id)
+        #print(d_id)
 
         #aux = models.Client_Info.objects.get(company_id = c_id)
         client_info = models.Client_Info.objects.filter(dataset_id = d_id)

@@ -20,10 +20,12 @@ export class ClientInfoComponent implements OnInit {
   dataSetId: number;
 
   ngOnInit(): void {
-    this.clientInfoService.getList()
+    this.dataSetId = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.clientInfoService.getListFk(this.dataSetId)
     .subscribe(data=> this.clientInfo = data);
 
-    this.dataSetId = Number(this.route.snapshot.paramMap.get('id'));
+    
   }
 
   goToPage(pageName:string):void{
