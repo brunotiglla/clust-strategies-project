@@ -10,7 +10,8 @@ from clust_strategies_app import views
 
 urlpatterns = [
    
-    path('register/', views.AccountViewSet.as_view(), name='register'),
+    path('register/', views.RegistrationAPIView.as_view(), name='register'),
+    #path('register/', views.AccountViewSet.as_view(), name='register'),
     path('login/', views.LoginView.as_view(), name='login')
   
 

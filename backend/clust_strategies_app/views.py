@@ -3,9 +3,17 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from .serializer import AuthTokenSerializer,  CompanySerializer
+from .serializer import AuthTokenSerializer,  CompanySerializer,RegistrationSerializer
 
+class RegistrationAPIView(generics.CreateAPIView):
+    serializer_class = RegistrationSerializer
 
+    def post(self,request):
+        serializer= self.get_serializer(data = request.data)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+
+        return Response({"User":serializer.data})
 
 class AccountViewSet(generics.CreateAPIView):
     serializer_class = CompanySerializer
