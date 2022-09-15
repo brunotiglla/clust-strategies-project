@@ -17,6 +17,11 @@ export class ClientInfoService {
     .pipe(catchError((e) => throwError(e)));
   }
 
+  getListFk(id: number): Observable<Client_info[]>{
+    return this.http.get<Client_info[]>(`${environment.apiUrl}/info/get_with_fk/?d_id=${id}`)
+    .pipe(catchError((e) => throwError(e)));
+  }
+
   getElementById(id: number){
     return this.http.get<any>(`${environment.apiUrl}/info/${id}/`)
     .pipe(catchError((e) => throwError(e)));

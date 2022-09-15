@@ -31,7 +31,18 @@ export class LoginComponent implements OnInit {
       (data:AuthResData) =>{
         this.token = data.token
         console.log(data)
-        this.router.navigate(['/mi-perfil.component.html'])
+        this.goToPage("Inicio");
+        //this.router.navigate(['/mi-perfil.component.html'])
+        //JSON.stringify(localStorage.setItem('current',data.user_id));
+        localStorage.setItem('current',JSON.stringify(data.user_id));
+
+        //let temp:number = Object.assign(new Number,JSON.parse(localStorage.getItem('current')));
+
+        let temp2:number = JSON.parse(localStorage.getItem('current'));
+
+        //console.log(temp);
+        console.log(temp2);
+
       }
     )
 

@@ -34,7 +34,10 @@ export class HerramientaDeAnalisisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datasetService.getList()
+    let c_id:number = JSON.parse(localStorage.getItem('current'));
+    console.log(c_id);
+
+    this.datasetService.getListFk(c_id)
     .subscribe(data=> this.dataset = data);
 
     console.log(this.dataset);
