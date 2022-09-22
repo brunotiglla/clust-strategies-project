@@ -45,7 +45,7 @@ export class AddDatasetComponent implements OnInit {
   goToPage(pageName:string):void{
     this.auxFunction();
     //this.add()
-    //this.router.navigate([`${pageName}`]);
+    this.router.navigate([`${pageName}`]);
   }
 
   fd = new FormData();
@@ -56,7 +56,9 @@ export class AddDatasetComponent implements OnInit {
   }
 
   add():void{
-    this.dataset.company_id = 1;
+    let c_id:number = JSON.parse(localStorage.getItem('current'));
+
+    this.dataset.company_id = c_id;
     this.dataset.file_name = this.addForm.get('name')?.value
     this.dataset.created_timestamp = this.addForm.get('date')?.value
     console.log(this.dataset);

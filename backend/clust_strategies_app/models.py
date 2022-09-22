@@ -65,13 +65,25 @@ class DataSet(models.Model):
 class Client_Info(models.Model):
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     dataset_id = models.ForeignKey(DataSet, on_delete=models.CASCADE)
-    client_name = models.CharField(max_length=250)
-    client_gender = models.CharField(max_length=250)
-    client_income = models.CharField(max_length=250)
-    client_expenses = models.CharField(max_length=250)
+    aux_id = models.CharField(max_length=250)
+    Gender = models.CharField(max_length=250)
+    Ever_Married = models.CharField(max_length=250)
+    Age = models.CharField(max_length=250)
+    Graduated = models.CharField(max_length=250)
+    Profession = models.CharField(max_length=250)
+    Work_Experience = models.CharField(max_length=250)
+    Spending_Score = models.CharField(max_length=250)
+    Family_Size = models.CharField(max_length=250)
+    Var_1 = models.CharField(max_length=250)
+
+    #old
+    #client_name = models.CharField(max_length=250)
+    #client_gender = models.CharField(max_length=250)
+    #client_income = models.CharField(max_length=250)
+    #client_expenses = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.client_name
+        return self.aux_id
 
 
 

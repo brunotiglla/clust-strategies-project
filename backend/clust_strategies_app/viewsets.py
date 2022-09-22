@@ -96,20 +96,36 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         print(1)
         for id_, row in enumerate(reader):
             (
-                client_name,
-                client_gender,
-                client_income,
-                client_expenses,
+                ID,
+                Gender,
+                Ever_Married,
+                Age,
+                Graduated,
+                Profession,
+                Work_Experience,
+                Spending_Score,
+                Family_Size,
+                Var_1
             ) = row
 
             info_list.append(
                 models.Client_Info(
                     company_id = models.Company.objects.get(id=c_id),
                     dataset_id = models.DataSet.objects.get(id=d_id),
-                    client_name = client_name,
-                    client_gender = client_gender,
-                    client_income = client_income,
-                    client_expenses = client_expenses,
+                    aux_id = ID,
+                    Gender = Gender,
+                    Ever_Married = Ever_Married,
+                    Age = Age,
+                    Graduated = Graduated,
+                    Profession = Profession,
+                    Work_Experience = Work_Experience,
+                    Spending_Score = Spending_Score,
+                    Family_Size = Family_Size,
+                    Var_1 = Var_1,
+                    #client_name = client_name,
+                    #client_gender = client_gender,
+                    #client_income = client_income,
+                    #client_expenses = client_expenses,
                 )
             )
         models.Client_Info.objects.bulk_create(info_list)

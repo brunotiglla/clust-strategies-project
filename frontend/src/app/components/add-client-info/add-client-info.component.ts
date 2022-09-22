@@ -21,18 +21,29 @@ export class AddClientInfoComponent implements OnInit {
     id: 0,
     company_id: 0,
     dataset_id: 0,
-    client_name: '',
-    client_gender: '',
-    client_expenses: '',
-    client_income: '',
+    aux_id: '',
+    Gender: '',
+    Ever_Married: '',
+    Age: '',
+    Graduated: '',
+    Profession: '',
+    Work_Experience: '',
+    Spending_Score: '',
+    Family_Size: '',
+    Var_1: '',
   }
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
-      client_name: new FormControl(),
-      client_gender: new FormControl(),
-      client_expenses: new FormControl(),
-      client_income: new FormControl()
+      Gender: new FormControl(),
+      Ever_Married: new FormControl(),
+      Age: new FormControl(),
+      Graduated: new FormControl(),
+      Profession: new FormControl(),
+      Work_Experience: new FormControl(),
+      Spending_Score: new FormControl(),
+      Family_Size: new FormControl(),
+      Var_1: new FormControl()
      });
   }
 
@@ -42,12 +53,18 @@ export class AddClientInfoComponent implements OnInit {
   }
 
   add():void{
-    this.clientInfo.company_id = 1;
+    let c_id:number = JSON.parse(localStorage.getItem('current'));
+    this.clientInfo.company_id = c_id;
     this.clientInfo.dataset_id = Number(this.route.snapshot.paramMap.get('id'));
-    this.clientInfo.client_name = this.addForm.get('client_name')?.value;
-    this.clientInfo.client_gender = this.addForm.get('client_gender')?.value;
-    this.clientInfo.client_expenses = this.addForm.get('client_expenses')?.value;
-    this.clientInfo.client_income = this.addForm.get('client_income')?.value;
+    this.clientInfo.Gender = this.addForm.get('Gender')?.value;
+    this.clientInfo.Ever_Married = this.addForm.get('Ever_Married')?.value;
+    this.clientInfo.Age = this.addForm.get('Age')?.value;
+    this.clientInfo.Graduated = this.addForm.get('Graduated')?.value;
+    this.clientInfo.Profession = this.addForm.get('Profession')?.value;
+    this.clientInfo.Work_Experience = this.addForm.get('Work_Experience')?.value;
+    this.clientInfo.Spending_Score = this.addForm.get('Spending_Score')?.value;
+    this.clientInfo.Family_Size = this.addForm.get('Family_Size')?.value;
+    this.clientInfo.Var_1 = this.addForm.get('Var_1')?.value;
     console.log(this.clientInfo);
     this.clientInfoService.createClientInfo(this.clientInfo).subscribe((data: any) =>{
       console.log(data);

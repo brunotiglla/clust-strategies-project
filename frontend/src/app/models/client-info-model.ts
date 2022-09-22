@@ -2,8 +2,15 @@ export interface Client_info{
     id: number;
     company_id: number;
     dataset_id: number;
-    client_name: string;
-    client_gender: string;
-    client_income: string;
-    client_expenses: string;
+    aux_id: string;
+    Gender: string;
+    Ever_Married: string;
+    Age: string;
+    Graduated: string;
+    Profession: string;
+    Work_Experience: string;
+    Spending_Score: string;
+    Family_Size: string;
+    Var_1: string;
 }
+

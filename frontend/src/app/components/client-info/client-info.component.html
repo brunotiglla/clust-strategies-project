@@ -29,10 +29,15 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Nombre</th>
-              <th>Genero</th>
-              <th>Ingresos</th>
-              <th>Gastos</th>
+              <th>Gender</th>
+              <th>Ever_Married</th>
+              <th>Age</th>
+              <th>Graduated</th>
+              <th>Profession</th>
+              <th>Work_Experience</th>
+              <th>Spending_Score</th>
+              <th>Family_Size</th>
+              <th>Var_1</th>
               
               <th>Edit</th>
               <th>Delete</th>
@@ -40,11 +45,16 @@
           </thead>
           <tbody *ngFor="let data of clientInfo; index as i">
             <tr>
-              <td>{{i+1}}</td>
-              <td>{{data.client_name}}</td>
-              <td>{{data.client_gender}}</td>
-              <td>{{data.client_income}}</td>
-              <td>{{data.client_expenses}}</td>
+              <td>{{data.aux_id}}</td>
+              <td>{{data.Gender}}</td>
+              <td>{{data.Ever_Married}}</td>
+              <td>{{data.Age}}</td>
+              <td>{{data.Graduated}}</td>
+              <td>{{data.Profession}}</td>
+              <td>{{data.Work_Experience}}</td>
+              <td>{{data.Spending_Score}}</td>
+              <td>{{data.Family_Size}}</td>
+              <td>{{data.Var_1}}</td>
               <td>
                 <a (click)="goToPage2('EditClientInfo',data.id)" class="btn btn-app">
                   Edit
