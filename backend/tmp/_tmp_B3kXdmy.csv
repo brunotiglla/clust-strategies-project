@@ -1,0 +1,5 @@
+ID;Gender;Ever_Married;Age;Graduated;Profession;Work_Experience;Spending_Score;Family_Size;Var_1
+459001;Female;No;19;No;Marketing;;Low;4;Cat_6
+459003;Male;Yes;47;Yes;Doctor;0;High;5;Cat_4
+459005;Male;Yes;61;Yes;Doctor;5;Low;3;Cat_6
+459008;Female;Yes;47;Yes;Artist;1;Average;3;Cat_6
