@@ -19,6 +19,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 #from rest_framework.parsers import FileUploadParser,FormParser,MultiPartParser as parsers
 import rest_framework.parsers as parsers
 
+import pandas as pd
+import pickle
+from pathlib import Path
 
 fs = FileSystemStorage(location='tmp/')
 
@@ -41,12 +44,28 @@ class DataSetViewset(viewsets.ModelViewSet):
 
         return Response(serializer.data)
     
-
+from sklearn import preprocessing, decomposition
+from sklearn.impute import KNNImputer
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import f1_score,precision_score,recall_score,accuracy_score,classification_report,confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+from sklearn.datasets import make_regression
+from sklearn.tree import DecisionTreeRegressor
 
 class ClientInfoViewset(viewsets.ModelViewSet):
     queryset = models.Client_Info.objects.all()
     serializer_class = serializers.ClientInfoSerialize
     parser_classes = (parsers.MultiPartParser,)
+
+    HERE = Path(__file__).parent
+
+    model = pickle.load(open(HERE / 'model.pkl','rb'))
+    @action(detail=False,methods=['GET'])
+    def use_model(self,request):
+        print("a")
 
     @action(detail = False, methods=['GET'])
     def get_with_fk(self, request):
