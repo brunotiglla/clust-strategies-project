@@ -65,7 +65,31 @@ class ClientInfoViewset(viewsets.ModelViewSet):
     model = pickle.load(open(HERE / 'model.pkl','rb'))
     @action(detail=False,methods=['GET'])
     def use_model(self,request):
-        print("a")
+        print(request.data)
+        #lista para IDs
+        listID = list()
+        for  key in request.data:
+            listID.append(request.data[key])
+        print(listID)
+
+        df=pd.DataFrame()
+
+        for elem in listID:
+            client_info = models.Client_Info.objects.filter(dataset_id = elem)
+            #client_info = pd.DataFrame(list(models.Client_Info.objects.filter(dataset_id = elem)))
+            #print(client_info)
+            serializer = serializers.ClientInfoSerialize(client_info, many = True)
+            aux=pd.DataFrame(serializer.data)
+            df = df.append(aux)
+            #print(aux)
+            #print()
+        print(df)
+
+
+
+        return Response(":)")
+
+
 
     @action(detail = False, methods=['GET'])
     def get_with_fk(self, request):
