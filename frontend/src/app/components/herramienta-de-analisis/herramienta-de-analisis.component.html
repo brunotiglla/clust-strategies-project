@@ -41,10 +41,9 @@
           <tbody *ngFor="let data of dataset; index as i">
             <tr>
               <td>
-              <div  class="icheck-primary d-inline ml-2">
-                <input type="checkbox" value="" name="todo1"  [attr.id]="'Location' + data.id" (change)="checked(data.id)">
-                
-              </div>
+                <a (click)="goToPage2('ShowData',data.id)" class="btn btn-app">
+                  Analizar
+                </a>
             </td>
               <td>{{i+1}}</td>
               <td>{{data.file_name}}</td>

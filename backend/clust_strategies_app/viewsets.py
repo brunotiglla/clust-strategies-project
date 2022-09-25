@@ -99,22 +99,27 @@ class ClientInfoViewset(viewsets.ModelViewSet):
     def use_model(self,request):
         #print(request.data)
         #lista para IDs
-        listID = list()
-        for  key in request.data:
-            listID.append(request.data[key])
+        #listID = list()
+        #for  key in request.query_params:
+        #    listID.append(request.query_params[key])
         #print(listID)
 
         df=pd.DataFrame()
+        d_id = request.query_params["d_id"]
+        client_info = models.Client_Info.objects.filter(dataset_id = d_id)
+        serializer = serializers.ClientInfoSerialize(client_info, many = True)
+        aux=pd.DataFrame(serializer.data)
+        df = df.append(aux)
 
-        for elem in listID:
-            client_info = models.Client_Info.objects.filter(dataset_id = elem)
-            #client_info = pd.DataFrame(list(models.Client_Info.objects.filter(dataset_id = elem)))
-            #print(client_info)
-            serializer = serializers.ClientInfoSerialize(client_info, many = True)
-            aux=pd.DataFrame(serializer.data)
-            df = df.append(aux)
-            #print(aux)
-            #print()
+        #for elem in listID:
+        #    client_info = models.Client_Info.objects.filter(dataset_id = elem)
+        #    #client_info = pd.DataFrame(list(models.Client_Info.objects.filter(dataset_id = elem)))
+        #    #print(client_info)
+        #    serializer = serializers.ClientInfoSerialize(client_info, many = True)
+        #    aux=pd.DataFrame(serializer.data)
+        #    df = df.append(aux)
+        #    #print(aux)
+        #    #print()
         print(df)
         aux = df.copy()
         print(type(df))
@@ -168,7 +173,7 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         print("_________________________________")
         print("normal version")
 
-        aux['k-means_label'] = answer
+        aux['k_means_label'] = answer
 
 
         #data=data.reset_index()
@@ -181,10 +186,11 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         print("normalziaed")
         df['k-means_label'] = answer
         print(df)
+        #serializer = serializers.ClientInfoSerialize(df, many = True)
 
 
 
-        return Response(":)")
+        return Response(aux)
 
 
 

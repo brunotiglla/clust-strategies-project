@@ -18,6 +18,7 @@ import {EditDatasetComponent} from './components/edit-dataset/edit-dataset.compo
 import {ClientInfoComponent} from './components/client-info/client-info.component';
 import {EditClientInfoComponent} from './components/edit-client-info/edit-client-info.component';
 import { AddClientInfoComponent } from './components/add-client-info/add-client-info.component';
+import {ShowDataComponent} from './components/show-data/show-data.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'EditDataset/:id',component:EditDatasetComponent},
   {path: 'ClientInfo/:id',component:ClientInfoComponent},
   {path: 'EditClientInfo/:id',component: EditClientInfoComponent},
-  {path: 'AddClientInfo/:id',component: AddClientInfoComponent}
+  {path: 'AddClientInfo/:id',component: AddClientInfoComponent},
+  {path: 'ShowData/:id', component: ShowDataComponent}
 ];
 
 @NgModule({
