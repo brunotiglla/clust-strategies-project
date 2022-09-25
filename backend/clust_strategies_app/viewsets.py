@@ -1,5 +1,6 @@
 #from crypt import methods
 import imp
+from pyexpat import model
 from urllib import response
 from rest_framework import viewsets
 from . import models
@@ -62,15 +63,15 @@ class ClientInfoViewset(viewsets.ModelViewSet):
 
     HERE = Path(__file__).parent
 
-    model = pickle.load(open(HERE / 'model.pkl','rb'))
+    predictModel = pickle.load(open(HERE / 'model.pkl','rb'))
     @action(detail=False,methods=['GET'])
     def use_model(self,request):
-        print(request.data)
+        #print(request.data)
         #lista para IDs
         listID = list()
         for  key in request.data:
             listID.append(request.data[key])
-        print(listID)
+        #print(listID)
 
         df=pd.DataFrame()
 
@@ -84,6 +85,19 @@ class ClientInfoViewset(viewsets.ModelViewSet):
             #print(aux)
             #print()
         print(df)
+        print('-------------------------------------------------')
+        df.drop(['id','company_id','dataset_id'],axis=1,inplace=True)
+        df.rename(columns={'aux_id':'ID'},inplace=True)
+        df.rename({'Female':0,'Male':1},inplace=True)
+        df.rename({'No':0,'Yes':1},inplace=True)
+        ##from colab
+        #scaler = MinMaxScaler()
+        #columns_to_normalize = ['Age','Profession','Work_Experience','Spending_Score','Family_Size','Var_1']
+        #df[columns_to_normalize]=scaler.fit_transform(df[columns_to_normalize])
+        ##end colab
+        print(df)
+        #answer = self.predictModel.predict(df)
+        #print(answer)
 
 
 
