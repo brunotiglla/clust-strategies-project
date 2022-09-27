@@ -1,0 +1,7 @@
+ID,Gender,Ever_Married,Age,Graduated,Profession,Work_Experience,Spending_Score,Family_Size,Var_1
+459014,Male,No,19,No,Healthcare,0,Low,4,Cat_6
+459015,Male,No,22,No,Healthcare,0,Low,3,Cat_6
+459016,Female,No,22,No,Healthcare,0,Low,6,Cat_6
+459024,Male,Yes,50,Yes,Artist,1,Average,5,Cat_6
+459026,Male,No,27,No,Healthcare,8,Low,3,Cat_3
+459032,Male,No,18,No,Doctor,0,Low,3,Cat_6

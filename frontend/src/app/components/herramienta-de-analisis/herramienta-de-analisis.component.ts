@@ -33,6 +33,25 @@ export class HerramientaDeAnalisisComponent implements OnInit {
     this.router.navigate([`${pageName}`,id]);
   }
 
+  checkedID: number[] = [];
+
+
+  checked(id: number): void{
+    const index = this.checkedID.indexOf(id);
+    if (index > -1){
+      this.checkedID.splice(index,1);
+    }else{
+      this.checkedID.push(id);
+    }
+    
+    console.log(this.checkedID);
+
+  }
+
+  sendDataset(): void{
+    console.log("Información enviada");
+  }
+
   ngOnInit(): void {
     let c_id:number = JSON.parse(localStorage.getItem('current'));
     console.log(c_id);

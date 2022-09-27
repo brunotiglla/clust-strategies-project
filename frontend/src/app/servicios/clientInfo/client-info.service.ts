@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { map, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import {Client_info} from 'src/app/models/client-info-model'
+import {Client_info,Client_Info_K_Means} from 'src/app/models/client-info-model'
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,12 @@ export class ClientInfoService {
     return this.http.post<any>(`${environment.apiUrl}/info/`,clientInfo)
     .pipe(catchError((e) => throwError(e)));
   }
+
+  useModel(id: number){
+    return this.http.get<Client_Info_K_Means[]>(`${environment.apiUrl}/info/use_model/?d_id=${id}`)
+    .pipe(catchError((e) => throwError(e)));
+  }
+
 
   
 }

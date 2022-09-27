@@ -29,6 +29,7 @@
         <table class="table table-head-fixed text-nowrap">
           <thead>
             <tr>
+              <th>seleccionar</th>
               <th>#</th>
               <th>File name</th>
               <th>Created</th>
@@ -39,6 +40,11 @@
           </thead>
           <tbody *ngFor="let data of dataset; index as i">
             <tr>
+              <td>
+                <a (click)="goToPage2('ShowData',data.id)" class="btn btn-app">
+                  Analizar
+                </a>
+            </td>
               <td>{{i+1}}</td>
               <td>{{data.file_name}}</td>
               <td>{{data.created_timestamp}}</td>
@@ -68,4 +74,10 @@
   </div>
 </div>
 <!-- /.row -->
+<span>
+  <h3 class="card-title">2. Ejecutar Análisis</h3>
+</span>
+<button type="button" class="btn btn-block btn-warning" (click)="sendDataset()">analizar Dataset</button>
+ 
+
 
