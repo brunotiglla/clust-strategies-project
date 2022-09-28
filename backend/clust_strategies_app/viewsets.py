@@ -1,4 +1,5 @@
 #from crypt import methods
+from asyncio.windows_events import NULL
 import imp
 from pyexpat import model
 from unittest import result
@@ -110,7 +111,8 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         serializer = serializers.ClientInfoSerialize(client_info, many = True)
         aux=pd.DataFrame(serializer.data)
         df = df.append(aux)
-
+        df = df.drop('abcd',axis = 0)
+        #df = df.drop('')
         #for elem in listID:
         #    client_info = models.Client_Info.objects.filter(dataset_id = elem)
         #    #client_info = pd.DataFrame(list(models.Client_Info.objects.filter(dataset_id = elem)))
@@ -187,10 +189,22 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         df['k-means_label'] = answer
         print(df)
         #serializer = serializers.ClientInfoSerialize(df, many = True)
+        print("============================")
+        print("============================")
+        print("============================")
+
+        #grouped_df = aux.groupby("k_means_label")
+        #for key, item in grouped_df:
+        #    print(grouped_df.get_group(key), "\n\n")
+
+        aux = aux.sort_values("k_means_label")
+        print(aux)
 
 
 
-        return Response(aux)
+
+        #return Response(aux)
+        return Response(":)")
 
 
 
@@ -239,7 +253,8 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         next(reader)
 
         info_list = []
-        print(1)
+        emptyValue = False
+        
         for id_, row in enumerate(reader):
             (
                 ID,
@@ -253,6 +268,19 @@ class ClientInfoViewset(viewsets.ModelViewSet):
                 Family_Size,
                 Var_1
             ) = row
+            
+            for elem in row:
+                if elem == "":
+                    indexOfNull = row.index(elem)
+                    
+                    row[indexOfNull] = "abcd"
+                    #print(elem," F")
+                    print(row)
+                    #emptyValue = True
+                    
+            #if emptyValue:
+            #    return Response("Error")
+                
 
             info_list.append(
                 models.Client_Info(
@@ -274,7 +302,9 @@ class ClientInfoViewset(viewsets.ModelViewSet):
                     #client_expenses = client_expenses,
                 )
             )
+        #print(type(row))
+        #return Response(":)")
         models.Client_Info.objects.bulk_create(info_list)
-        print(1)
+        #print(1)
 
         return Response("Data importada correctamente")
