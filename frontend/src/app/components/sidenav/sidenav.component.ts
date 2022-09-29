@@ -16,6 +16,11 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  singout(): void {
+    localStorage.clear();
+    this.goToPage('Login');
+  }
+
   goToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
   }

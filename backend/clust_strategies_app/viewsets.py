@@ -111,7 +111,8 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         serializer = serializers.ClientInfoSerialize(client_info, many = True)
         aux=pd.DataFrame(serializer.data)
         df = df.append(aux)
-        df = df.drop('abcd',axis = 0)
+        df = df.dropna()
+        #df = df.drop('abcd',axis = 0)
         #df = df.drop('')
         #for elem in listID:
         #    client_info = models.Client_Info.objects.filter(dataset_id = elem)
@@ -123,6 +124,7 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         #    #print(aux)
         #    #print()
         print(df)
+        #return Response(":c")
         aux = df.copy()
         print(type(df))
         print('-------------------------------------------------')
@@ -273,7 +275,7 @@ class ClientInfoViewset(viewsets.ModelViewSet):
                 if elem == "":
                     indexOfNull = row.index(elem)
                     
-                    row[indexOfNull] = "abcd"
+                    row[indexOfNull] = NULL
                     #print(elem," F")
                     print(row)
                     #emptyValue = True
@@ -286,16 +288,31 @@ class ClientInfoViewset(viewsets.ModelViewSet):
                 models.Client_Info(
                     company_id = models.Company.objects.get(id=c_id),
                     dataset_id = models.DataSet.objects.get(id=d_id),
-                    aux_id = ID,
-                    Gender = Gender,
-                    Ever_Married = Ever_Married,
-                    Age = Age,
-                    Graduated = Graduated,
-                    Profession = Profession,
-                    Work_Experience = Work_Experience,
-                    Spending_Score = Spending_Score,
-                    Family_Size = Family_Size,
-                    Var_1 = Var_1,
+                    aux_id = row[0],
+                    Gender = row[1],
+                    Ever_Married = row[2],
+                    Age = row[3],
+                    Graduated = row[4],
+                    Profession = row[5],
+                    Work_Experience = row[6],
+                    Spending_Score = row[7],
+                    Family_Size = row[8],
+                    Var_1 = row[9],
+                    #Anterior
+
+                    #aux_id = ID,
+                    #Gender = Gender,
+                    #Ever_Married = Ever_Married,
+                    #Age = Age,
+                    #Graduated = Graduated,
+                    #Profession = Profession,
+                    #Work_Experience = Work_Experience,
+                    #Spending_Score = Spending_Score,
+                    #Family_Size = Family_Size,
+                    #Var_1 = Var_1,
+
+
+
                     #client_name = client_name,
                     #client_gender = client_gender,
                     #client_income = client_income,
