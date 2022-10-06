@@ -15,6 +15,8 @@ export class ShowDataComponent implements OnInit {
     private clientInfoService: ClientInfoService
   ) { }
   clientInfo: Client_Info_K_Means[] = [];
+  newFormat: Client_Info_K_Means[] = [];
+  auxFormat: Client_Info_K_Means;
 
   dataSetId: number;
 
@@ -23,7 +25,19 @@ export class ShowDataComponent implements OnInit {
 
     this.clientInfoService.useModel(this.dataSetId)
     .subscribe(data=> {this.clientInfo = data;
-    console.log(this.clientInfo);
+      console.log(this.clientInfo);
+      console.log(this.clientInfo['Age'][1]);
+      this.newFormat = Object.keys(data)
+      .map(function(key){
+        return data[key];
+      });
+      console.log("a")
+      console.log(this.newFormat)
+      //for(let i = 0; i < 4; i++){
+      //  this.auxFormat.Age=data['Age'][i]
+      //  this.auxFormat.id=data['id'][i]
+      //  console.log(this.auxFormat)
+      //}
       }
       
       );

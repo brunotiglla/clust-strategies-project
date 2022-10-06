@@ -57,9 +57,11 @@ export class HerramientaDeAnalisisComponent implements OnInit {
     console.log(c_id);
 
     this.datasetService.getListFk(c_id)
-    .subscribe(data=> this.dataset = data);
+    .subscribe(data=> {
+      this.dataset = data;
+      console.log(this.dataset);});
 
-    console.log(this.dataset);
+    
   }
 
 }

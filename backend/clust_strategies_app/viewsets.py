@@ -195,18 +195,68 @@ class ClientInfoViewset(viewsets.ModelViewSet):
         print("============================")
         print("============================")
 
-        #grouped_df = aux.groupby("k_means_label")
-        #for key, item in grouped_df:
-        #    print(grouped_df.get_group(key), "\n\n")
+        
 
+        #grouped_df2= aux.groupby(['Age','Family_Size']).mean()
+        #print(grouped_df2)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         aux = aux.sort_values("k_means_label")
         print(aux)
+
+        #print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        #grouped_df2= aux.groupby("k_means_label").agg({'Age':'mean'})
+        #print(grouped_df2)
+        ageValues = [0,0,0,0]
+        familyValues = [0,0,0,0]
+        contadores = [0,0,0,0]
+        for index,row in aux.iterrows():
+            if row['k_means_label'] == 0:
+                ageValues[0] += int(row['Age'])
+                familyValues[0] += int(row['Family_Size'])
+                contadores[0] +=1
+            elif row['k_means_label'] == 1:
+                ageValues[1] += int(row['Age'])
+                familyValues[1] += int(row['Family_Size'])
+                contadores[1] +=1
+            elif row['k_means_label'] == 2:
+                ageValues[2] += int(row['Age'])
+                familyValues[2] += int(row['Family_Size'])
+                contadores[2] +=1
+            else:
+                ageValues[3] += int(row['Age'])
+                familyValues[3] += int(row['Family_Size'])
+                contadores[3] +=1
+        print(ageValues)
+        print(familyValues)
+        print(contadores)
+
+        for n in range(len(ageValues)):
+            ageValues[n] = round(ageValues[n]/contadores[n],1)
+            familyValues[n] = round(familyValues[n]/contadores[n],1)
+        print(ageValues)
+        print(familyValues)
+
+        #grouped_df = aux.groupby("k_means_label").agg(pd.Series.mode)
+        grouped_df = aux.groupby("k_means_label").agg(lambda x: pd.Series.mode(x)[0])
+        
+        #grouped_df = aux.groupby("k_means_label", as_index=False).agg({'Gender','Ever_Married','Graduated','Profession','Spending_Score':'mean','Age': lambda x: x.mode()})
+        #for key, item in grouped_df:
+        #    print(grouped_df.get_group(key), "\n\n")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        grouped_df.drop(['company_id','dataset_id','aux_id'],axis=1,inplace=True)
+        print(grouped_df)
+
+        for index,row in grouped_df.iterrows():
+            grouped_df['Age'][index]=ageValues[index]
+            grouped_df['Family_Size'][index] = familyValues[index]
+        print(grouped_df)
+        #print(grouped_df['Spending_Score'][2][1])
 
 
 
 
         #return Response(aux)
-        return Response(":)")
+        return Response(grouped_df)
 
 
 
