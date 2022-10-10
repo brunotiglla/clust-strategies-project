@@ -29,7 +29,33 @@ import numpy as np
 
 fs = FileSystemStorage(location='tmp/')
 
+class ClustResultsViewset(viewsets.ModelViewSet):
+    queryset = models.Cluster_Results.objects.all()
+    serializer_class = serializers.ClusterResultsSeralizer
 
+    def upload(self,df,d_id):
+        print("upload data")
+        info_list = []
+
+        for index, row in df.iterrows():
+            info_list.append(
+                models.Cluster_Results(
+                    dataset_id = models.DataSet.objects.get(id=d_id),
+                    aux_id = row[0],
+                    Gender = row[1],
+                    Ever_Married = row[2],
+                    Age = row[3],
+                    Graduated = row[4],
+                    Profession = row[5],
+                    Work_Experience = row[6],
+                    Spending_Score = row[7],
+                    Family_Size = row[8],
+                    Var_1 = row[9],
+                    cluster = index,
+                )
+            )
+        models.Cluster_Results.objects.bulk_create(info_list)
+        return
 
 class DataSetViewset(viewsets.ModelViewSet):
     queryset = models.DataSet.objects.all()
@@ -48,7 +74,7 @@ class DataSetViewset(viewsets.ModelViewSet):
 
         return Response(serializer.data)
     
-from sklearn import preprocessing, decomposition
+from sklearn import cluster, preprocessing, decomposition
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import MinMaxScaler
 #from sklearn.metrics import f1_score,precision_score,recall_score,accuracy_score,classification_report,confusion_matrix
@@ -251,6 +277,10 @@ class ClientInfoViewset(viewsets.ModelViewSet):
             grouped_df['Family_Size'][index] = familyValues[index]
         print(grouped_df)
         #print(grouped_df['Spending_Score'][2][1])
+
+        print("Send to db")
+        clustSerializer = ClustResultsViewset()
+        clustSerializer.upload(grouped_df,d_id)
 
 
 

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
+from sklearn import cluster
 
 # Create your models here.
 
@@ -60,6 +61,23 @@ class DataSet(models.Model):
 
     def __str__(self):
         return self.file_name
+
+class Cluster_Results(models.Model):
+    dataset_id = models.ForeignKey(DataSet, on_delete=models.CASCADE)
+    cluster = models.CharField(max_length=10)
+    aux_id = models.CharField(max_length=250)
+    Gender = models.CharField(max_length=250)
+    Ever_Married = models.CharField(max_length=250)
+    Age = models.CharField(max_length=250)
+    Graduated = models.CharField(max_length=250)
+    Profession = models.CharField(max_length=250)
+    Work_Experience = models.CharField(max_length=250)
+    Spending_Score = models.CharField(max_length=250)
+    Family_Size = models.CharField(max_length=250)
+    Var_1 = models.CharField(max_length=250)
+
+    def __str__(self):
+       return self.aux_id
 
 
 class Client_Info(models.Model):
